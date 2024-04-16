@@ -1,0 +1,58 @@
+[
+  {
+    "pid": 1,
+    "name": "Sony A7C II Body (淨機身) ILCE-7CM2",
+    "imageUrl": "https://www.price.com.hk/space/product/598000/598847_chpxfh_4.jpg",
+    "price": 13850.00,
+    "stock": 300
+  },
+  {
+    "pid": 2,
+    "name": "Sony A7CR Body (淨機身) ILCE-7CR",
+    "imageUrl": "https://www.price.com.hk/space/product/598000/598855_p8u2dc_4.png",
+    "price": 18900.00,
+    "stock": 280
+  },
+  {
+    "pid": 3,
+    "name": "Sony A7C (淨機身)",
+    "imageUrl": "https://www.price.com.hk/space/product/468000/468895_azx43l_4.jpg",
+    "price": 8900.00,
+    "stock": 0
+  },
+  {
+    "pid": 5,
+    "name": "Sony A7 IV 全片幅高效能相機 (淨機身)",
+    "imageUrl": "https://www.price.com.hk/space/product/519000/519231_hqn27d_4.png",
+    "price": 14450.00,
+    "stock": 400
+  },
+  {
+    "pid": 6,
+    "name": "Sony A7R V Body (淨機身) ILCE-7RM5",
+    "imageUrl": "https://www.price.com.hk/space/product/565000/565014_90viis_4.png",
+    "price": 22580.00,
+    "stock": 200
+  },
+  {
+    "pid": 7,
+    "name": "Sony A6700 Body (淨機身) ILCE-6700",
+    "imageUrl": "https://www.price.com.hk/space/product/592000/592730_cyh603_4.png",
+    "price": 9100.00,
+    "stock": 300
+  },
+  {
+    "pid": 8,
+    "name": "Sony FE 24-50mm F2.8 G for Sony E Mount (SEL2450G)",
+    "imageUrl": "https://www.price.com.hk/space/product/617000/617416_anl14z_4.png",
+    "price": 8990.00,
+    "stock": 300
+  },
+  {
+    "pid": 9,
+    "name": "Sony FE 16-35mm F2.8 GM II for Sony E Mount (SEL1635GM2)",
+    "imageUrl": "https://www.price.com.hk/space/product/598000/598862_dpkp7y_4.png",
+    "price": 15950.00,
+    "stock": 100
+  }
+]
