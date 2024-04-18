@@ -32,7 +32,7 @@ export default function ProductListingPage(){
     return(
         <>
             <SearchAppBar/>
-            <Container>
+            <Container sx={{mt:3}}>
                 {
                     productDataDto
                     ? <ProductGrid products={productDataDto}/>

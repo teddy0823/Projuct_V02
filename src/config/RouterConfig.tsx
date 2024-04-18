@@ -3,6 +3,7 @@ import {createBrowserRouter} from "react-router-dom";
 import ProductDetailPage from "../ui/page/ProductDetailPage/ProductDetailPage.tsx";
 import ErrorPage from "../ui/page/errorPage";
 import LoginPage from "../ui/page/LoginPage/LoginPage.tsx";
+import ShoppingCartPage from "../ui/page/ShoppingCartPage";
 
 export const router = createBrowserRouter([
     {
@@ -15,10 +16,10 @@ export const router = createBrowserRouter([
         path: "/public/product/:pid",
         element: <ProductDetailPage/>
     },
-    // {
-    //     path: "/shoppingcart",
-    //     element: <ShoppingCart/>
-    // },
+    {
+        path: "/shoppingcart",
+        element: <ShoppingCartPage/>
+    },
     {
         path: "/login",
         element: <LoginPage/>

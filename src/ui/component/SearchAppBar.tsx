@@ -1,12 +1,12 @@
 import * as React from "react";
 import {AppBar, Box, Button, CircularProgress, IconButton, Stack, Toolbar, Typography} from "@mui/material";
-import {Search} from "@mui/icons-material";
-
+import {Search, ShoppingCart} from "@mui/icons-material";
+import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import { styled, alpha } from '@mui/material/styles';
 import InputBase from '@mui/material/InputBase';
 import MenuIcon from '@mui/icons-material/Menu';
 import SearchIcon from '@mui/icons-material/Search';
-import {Link} from "react-router-dom";
+import {Link, useNavigate} from "react-router-dom";
 import {useContext} from "react";
 import {UserData} from "../../data/user/UserData.ts";
 import {LoginUserContext} from "../../context/LoginUserContext.ts";
@@ -33,6 +33,7 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 
 export default function SearchAppBar() {
     const loginUser = useContext<UserData | null|undefined>(LoginUserContext);
+    const navigate = useNavigate();
 
     const renderLoginUser = () =>{
         if (loginUser){
@@ -46,6 +47,12 @@ export default function SearchAppBar() {
                         }
                     </Typography>
                     </Box>
+                    <Button variant="contained" color="success"
+                    sx={{mr:2}}
+                    onClick={()=>{navigate("/shoppingcart")}}>
+                        <ShoppingCart />
+                    </Button>
+
                     <Button
                         color="error"
                         variant={"contained"}
