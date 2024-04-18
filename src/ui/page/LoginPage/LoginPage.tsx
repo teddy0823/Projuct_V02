@@ -1,11 +1,12 @@
 import React, {ChangeEvent, FormEvent, useContext, useEffect, useState} from 'react';
-import {Container, Grid, TextField, Button, Typography, Paper, Alert, Box} from '@mui/material';
+import {Container, Grid, TextField, Button, Typography, Paper, Alert, Box, Divider} from '@mui/material';
 import SearchAppBar from "../../component/SearchAppBar.tsx";
 import minionImage from './minion.png'; // 導入相片
 import * as FirebaseAuthService from "../../../authService/FirebaseAuthService.ts"
 import {useNavigate} from "react-router-dom";
 import {LoginUserContext} from "../../../context/LoginUserContext.ts";
 import {UserData} from "../../../data/user/UserData.ts";
+import {GoogleLoginButton} from "react-social-login-buttons";
 
 export default function LoginPage() {
 
@@ -14,7 +15,7 @@ export default function LoginPage() {
     const [isLoginFailed, setIsLoginFailed] = useState<boolean>(false);
 
     const navigate = useNavigate();
-    const loginUser = useContext<UserData|null|undefined>(LoginUserContext)
+    const loginUser = useContext<UserData | null | undefined>(LoginUserContext)
 
     const handleEmailChange = (event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
         setEmail(event.target.value)
@@ -24,7 +25,7 @@ export default function LoginPage() {
         setPassword(event.target.value)
     }
 
-    const handleLogin = async (enent:FormEvent<HTMLFormElement>) => {
+    const handleLogin = async (enent: FormEvent<HTMLFormElement>) => {
         event.preventDefault();
         const loginResult = await FirebaseAuthService.handleSignInWithEmailAndPassword(email, password);
         if (loginResult) {
@@ -32,14 +33,23 @@ export default function LoginPage() {
         } else {
             setIsLoginFailed(true);
         }
+    }
+
+
+        const handleGoogleSignIn = async () => {
+            if (await FirebaseAuthService.handleSignInWithGoogle()) {
+                navigate(-1);
+            }
+        }
+
 
         useEffect(() => {
-            if (loginUser){
+            if (loginUser) {
                 navigate("/");
             }
 
         }, [loginUser]);
-    }
+
 
     return (
         <>
@@ -59,7 +69,7 @@ export default function LoginPage() {
                                 登入
                             </Typography>
                             <Paper
-                            component="form" onSumbmit={handleLogin}>
+                                component="form" onSumbmit={handleLogin}>
 
                                 {isLoginFailed && <Alert severity="error" sx={{mb: 2}}>登入失敗</Alert>}
                                 <TextField
@@ -84,12 +94,19 @@ export default function LoginPage() {
                                 <Grid container spacing={2} justifyContent="center">
                                     <Grid item>
                                         <Button
+                                            fullWidth
+
                                             variant="contained"
                                             color="primary"
                                             type="submit"
-                                            onClick={handleLogin}>
+                                            onClick={handleLogin}
+                                            sx={{mt: 2, mb: 3}}>
                                             登入
                                         </Button>
+                                        <Divider/>
+                                        <GoogleLoginButton
+                                            onClick={handleGoogleSignIn}
+                                        />
                                     </Grid>
                                 </Grid>
                             </Paper>
