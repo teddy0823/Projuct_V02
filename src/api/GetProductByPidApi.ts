@@ -1,5 +1,5 @@
 import axios from "axios";
-import {GetProductByPID} from "../data/GetProductByPid.ts";
+import {GetProductByPID} from "../data/product/GetProductByPid.ts";
 
 const baseURL = "http://localhost:8080";
 

@@ -1,5 +1,5 @@
 import * as React from "react";
-import {AppBar, Box, Button, IconButton, Toolbar, Typography} from "@mui/material";
+import {AppBar, Box, Button, CircularProgress, IconButton, Stack, Toolbar, Typography} from "@mui/material";
 import {Search} from "@mui/icons-material";
 
 import { styled, alpha } from '@mui/material/styles';
@@ -7,31 +7,12 @@ import InputBase from '@mui/material/InputBase';
 import MenuIcon from '@mui/icons-material/Menu';
 import SearchIcon from '@mui/icons-material/Search';
 import {Link} from "react-router-dom";
+import {useContext} from "react";
+import {UserData} from "../../data/user/UserData.ts";
+import {LoginUserContext} from "../../context/LoginUserContext.ts";
+import * as FirebaseAuthService from "../../authService/FirebaseAuthService.ts";
 
-const SearchWrapper = styled('div')(({ theme }) => ({
-    position: 'relative',
-    borderRadius: theme.shape.borderRadius,
-    backgroundColor: alpha(theme.palette.common.white, 0.15),
-    '&:hover': {
-        backgroundColor: alpha(theme.palette.common.white, 0.25),
-    },
-    marginLeft: 0,
-    width: '100%',
-    [theme.breakpoints.up('sm')]: {
-        marginLeft: theme.spacing(1),
-        width: 'auto',
-    },
-}));
 
-const SearchIconWrapper = styled('div')(({ theme }) => ({
-    padding: theme.spacing(0, 2),
-    height: '100%',
-    position: 'absolute',
-    pointerEvents: 'none',
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center',
-}));
 
 const StyledInputBase = styled(InputBase)(({ theme }) => ({
     color: 'inherit',
@@ -51,11 +32,47 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 }));
 
 export default function SearchAppBar() {
-    const [searchKeyword, setSearchKeyword] = React.useState(""); // 狀態用於存儲搜尋關鍵字
+    const loginUser = useContext<UserData | null|undefined>(LoginUserContext);
 
-    const handleSearchInputChange = (event) => {
-        setSearchKeyword(event.target.value); // 更新搜尋關鍵字
-    };
+    const renderLoginUser = () =>{
+        if (loginUser){
+            return(
+                <Stack direction="row" >
+                    <Box display="flex" alignItems="center" mr={2}>
+
+                    <Typography>
+                        {
+                            loginUser.email
+                        }
+                    </Typography>
+                    </Box>
+                    <Button
+                        color="error"
+                        variant={"contained"}
+                        onClick={() =>{
+                        FirebaseAuthService.handleSignOut()
+                    }}>
+                        Logout
+                    </Button>
+
+                </Stack>
+            )
+        }else if(loginUser === null){
+            return (
+                <Button color="inherit"><Link to="/login" style={{
+                    textDecoration: 'none',
+                    color:"inherit"
+                }}>Login</Link>
+                </Button>
+            )
+
+        }else {
+            return (
+                <CircularProgress color="inherit"/>
+            )
+        }
+    }
+
 
     return (
         <Box sx={{ flexGrow: 1 }}>
@@ -80,11 +97,9 @@ export default function SearchAppBar() {
                        </Link>
 
                     </Typography>
-                    <Button color="inherit"><Link to="/login"style={{
-                        textDecoration: 'none',
-                        color:"inherit"
-                    }}>Login</Link>
-                    </Button>
+                    {
+                        renderLoginUser()
+                    }
                 </Toolbar>
             </AppBar>
         </Box>

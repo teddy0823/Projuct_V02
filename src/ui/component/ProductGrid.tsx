@@ -1,6 +1,6 @@
 import React from 'react';
 import { Grid, Paper, Typography, Button } from '@mui/material';
-import { Link } from 'react-router-dom';
+import {Link, useNavigate} from 'react-router-dom';
 import {styled} from "@mui/material/styles";
 
 const ImageWrapper = styled('div')({
@@ -40,6 +40,7 @@ const CustomButton = styled(Button)({
 });
 
 export default function ProductGrid({ products }: ProductGridProps) {
+    const navigate = useNavigate();
     if (!products) {
         return null;
     }
@@ -57,7 +58,8 @@ export default function ProductGrid({ products }: ProductGridProps) {
 
                         <Typography variant="body2" align="center" style={{ color: 'red' }}>
                             {product.has_stock?`HK${product.price.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`:"你走寶了"}</Typography>
-                        <CustomButton  component={Link} to={`/public/product/${product.pid}`} variant="contained" >查看詳情</CustomButton>
+                        {/*<CustomButton  component={Link} to={`/public/product/${product.pid}`} variant="contained" >查看詳情</CustomButton>*/}
+                        <CustomButton onClick={()=>navigate(`/public/product/${product.pid}`)} variant="contained" >查看詳情</CustomButton>
 
                     </Paper>
                 </Grid>

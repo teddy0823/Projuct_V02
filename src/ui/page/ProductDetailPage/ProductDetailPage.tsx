@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import { GetProductByPID } from "../../../data/GetProductByPid";
+import { GetProductByPID } from "../../../data/product/GetProductByPid.ts";
 import { Box, Button, Grid, Paper, TextField, Typography } from "@mui/material";
 import { styled } from "@mui/material/styles";
 import * as GetProductByPidApi from "../../../api/GetProductByPidApi.ts";
